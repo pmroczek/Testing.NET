@@ -47,7 +47,7 @@ namespace VideoRenta.Tests
 		[TestMethod()]
 		public void CustomerRentalsIsValidType()
 		{
-			Assert.IsInstanceOfType(new Customer("Przemek").Rentals, typeof(List<Rental>));
+			Assert.IsInstanceOfType(new Customer("Przemek").Rentals, typeof(List<IRental>));
 		}
 
 		[TestMethod()]
