@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoRental", "Testing.NET\VideoRental.csproj", "{1EC54A2C-FEE5-4A42-81C6-24F2E174CA3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoRenta.Tests", "VideoRenta.Tests\VideoRenta.Tests.csproj", "{067CED5F-B5B6-446E-84EE-657C8A26E09C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoRental.Tests", "VideoRenta.Tests\VideoRental.Tests.csproj", "{067CED5F-B5B6-446E-84EE-657C8A26E09C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

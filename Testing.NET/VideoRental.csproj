@@ -54,12 +54,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChildrenPrice.cs" />
-    <Compile Include="Movie.cs" />
-    <Compile Include="IPricePlans.cs" />
-    <Compile Include="NewReleasePrice.cs" />
+    <Compile Include="Impl\ChildrenPrice.cs" />
+    <Compile Include="Impl\Customer.cs" />
+    <Compile Include="Interfaces\ICustomer.cs" />
+    <Compile Include="Interfaces\IMovie.cs" />
+    <Compile Include="Interfaces\IRental.cs" />
+    <Compile Include="Impl\Movie.cs" />
+    <Compile Include="Interfaces\IPricePlans.cs" />
+    <Compile Include="Impl\NewReleasePrice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegularPrice.cs" />
+    <Compile Include="Impl\RegularPrice.cs" />
+    <Compile Include="Impl\Rental.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\DataForTests.mdf">

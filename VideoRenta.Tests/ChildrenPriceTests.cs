@@ -7,23 +7,23 @@ using Testing.NET.Interfaces;
 namespace VideoRenta.Tests
 {
 	[TestClass()]
-	public class RegularPriceTests
+	public class ChildrenPriceTests
 	{
 		public TestContext TestContext { get; set; }
 
 		[TestMethod()]
 		public void InitializedObjectIsCorrectType()
 		{
-			Assert.IsInstanceOfType(new RegularPrice(), typeof(IPricePlans));
+			Assert.IsInstanceOfType(new ChildrenPrice(), typeof(IPricePlans));
 		}
 
 		[TestMethod()]
 		public void CalculateChargeNoExeption()
 		{
-			RegularPrice regularPrice = new RegularPrice();
+			ChildrenPrice childrenPrice = new ChildrenPrice();
 			try
 			{
-				regularPrice.Charge(2);
+				childrenPrice.Charge(2);
 			}
 			catch (Exception ex)
 			{
@@ -35,46 +35,46 @@ namespace VideoRenta.Tests
 		[ExpectedException(typeof(System.ArgumentException))]
 		public void CalculationChargeWithNegativeDaysRented()
 		{
-			RegularPrice regularPrice = new RegularPrice();
-			regularPrice.Charge(-1);
+			ChildrenPrice childrenPrice = new ChildrenPrice();
+			childrenPrice.Charge(-1);
 		}
 
 		[TestMethod()]
 		[ExpectedException(typeof(System.ArgumentException))]
 		public void CalculationWithZeroDaysRented()
 		{
-			RegularPrice regularPrice = new RegularPrice();
-			regularPrice.Charge(0);
+			ChildrenPrice childrenPrice = new ChildrenPrice();
+			childrenPrice.Charge(0);
 		}
 
 		[TestMethod()]
 		public void CalculationChargeWithPositiveDaysRented()
 		{
-			RegularPrice regularPrice = new RegularPrice();
-			var result = regularPrice.Charge(14);
-			Assert.AreEqual(20.0M, result);
+			ChildrenPrice childrenPrice = new ChildrenPrice();
+			var result = childrenPrice.Charge(5);
+			Assert.AreEqual(4.5M, result);
 		}
 
 		[TestMethod()]
 		[DataSource("System.Data.SqlClient",
 		@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\repos\Testing.NET\Testing.NET\Data\DataForTests.mdf;Integrated Security=True",
-		"dbo.RegularPriceCharge", DataAccessMethod.Sequential)]
+		"dbo.ChildrenPriceCharge", DataAccessMethod.Sequential)]
 		public void CalculationChargeWithSetData()
 		{
-			RegularPrice regularPrice = new RegularPrice();
+			ChildrenPrice childrenPrice = new ChildrenPrice();
 			int days = Convert.ToInt32(TestContext.DataRow["DaysRented"]);
 			decimal expectedResult = Convert.ToDecimal(TestContext.DataRow["Result"]);
-			decimal actualResult = regularPrice.Charge(days);
+			decimal actualResult = childrenPrice.Charge(days);
 			Assert.AreEqual(expectedResult, actualResult);
 		}
 
 		[TestMethod()]
 		public void CalculationFrequentRenterPointNoErrors()
 		{
-			RegularPrice regularPrice = new RegularPrice();
+			ChildrenPrice childrenPrice = new ChildrenPrice();
 			try
 			{
-				regularPrice.FrequentRenterPoint(2);
+				childrenPrice.FrequentRenterPoint(2);
 			}
 			catch (Exception ex)
 			{
@@ -85,30 +85,30 @@ namespace VideoRenta.Tests
 		[TestMethod()]
 		public void CalculationFrequentPointGivesCorrectValue()
 		{
-			RegularPrice regularPrice = new RegularPrice();
-			var result = regularPrice.FrequentRenterPoint(14);
-			Assert.AreEqual(1, result);
+			ChildrenPrice childrenPrice = new ChildrenPrice();
+			var result = childrenPrice.FrequentRenterPoint(14);
+			Assert.AreEqual(13, result);
 		}
 
 		[TestMethod()]
 		[ExpectedException(typeof(System.ArgumentException))]
 		public void CalculationFrequentPointWithNEgativeDaysRentedCausesExeption()
 		{
-			RegularPrice regularPrice = new RegularPrice();
-			regularPrice.FrequentRenterPoint(-1);
+			ChildrenPrice childrenPrice = new ChildrenPrice();
+			childrenPrice.FrequentRenterPoint(-1);
 		}
 
 		[TestMethod()]
 		[DataSource("System.Data.SqlClient",
 		@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\repos\Testing.NET\Testing.NET\Data\DataForTests.mdf;Integrated Security=True",
-		"dbo.RegularFrequentRenterPoints", DataAccessMethod.Sequential)]
+		"dbo.ChildrenPriceFrequentRenterPoints", DataAccessMethod.Sequential)]
 		public void CalculationFrequentPointWithSetData()
 		{
-			RegularPrice regularPrice = new RegularPrice();
+			ChildrenPrice childrenPrice = new ChildrenPrice();
 			int days = Convert.ToInt32(TestContext.DataRow["DaysRented"]);
 			int expectedResult = Convert.ToInt32(TestContext.DataRow["Result"]);
 
-			var actualResult = regularPrice.FrequentRenterPoint(days);
+			var actualResult = childrenPrice.FrequentRenterPoint(days);
 			Assert.AreEqual(expectedResult, actualResult);
 		}
 	}
